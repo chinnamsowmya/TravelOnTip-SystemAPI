@@ -1,0 +1,11 @@
+http:
+  listener:
+    host: "localhost"
+    port: "9093"
+    
+  requester:
+    host: "localhost"
+    port: "9091"
+    routespath: "/travelOnTipcall/routes"
+    schedulespath: "/travelOnTipcall/schedules" 
+    

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="retrievetravelontiproutesandschedule-sapiraml-test-suite.xml" />
+	<munit:test name="retrievetravelontiproutesandschedule-sapiraml-test-suite-retrievetravelontiproutesandschedule-sapiraml-mainTest-KitRouter" doc:id="16283a4b-4501-4d6d-a531-d417292cd3b3" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="77f085f5-5e92-4fcf-921a-4fc9dae7ebae" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="retrievetravelontiproutesandschedule-sapiraml-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to retrievetravelontiproutesandschedule-sapiraml-main" doc:id="ae9aa9cb-8f57-47ff-9fe3-78180eb2bbdb" name="retrievetravelontiproutesandschedule-sapiraml-main"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert doc:name="Assert expression" doc:id="c5d7e212-052b-4307-88a7-de496aae9b57" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="retrievetravelontiproutesandschedule-sapiraml-test-suite-retrievetravelontiproutesandschedule-sapiraml-consoleTest" doc:id="f279ceed-5715-4273-af5b-b8db78659734" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="23f45a7c-515b-4ac5-81b8-92a534c1eac5" processor="apikit:console">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="retrievetravelontiproutesandschedule-sapiraml-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to retrievetravelontiproutesandschedule-sapiraml-console" doc:id="86609e1a-2cfc-4dcc-a08f-7212be095330" name="retrievetravelontiproutesandschedule-sapiraml-console"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert doc:name="Assert expression" doc:id="381e6aba-14ca-4fe9-8856-22bbcc5dd635" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="retrievetravelontiproutesandschedule-sapiraml-test-suite-get:\(transportType)\(transportCompany)\routes:retrievetravelontiproutesandschedule-sapiraml-configTest-Routes" doc:id="6db8508f-a18c-446c-9ac9-c29f2d73968c" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="d3b27775-735d-4afe-bbc0-35f386e0e80d" processor="http:request">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="c2d52d30-1fcf-4cbf-8c0a-920eb0cd4af7" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value='#[output application/java&#10;---&#10;[&#10;{&#10;"departureLocationCode": "BEN-SG",&#10;"arrivalLocationCode": "KLG-MY"&#10;}&#10;]]' />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="29626ac6-9bc4-407f-92f8-09788cca687f" >
+				<munit:attributes value='#[{&#10;&#10;       "headers" :  { "transactionId" : "hdsfhjdh-jxbv859-sjdf7643-3746bbd" },&#10;       "uriParams" :  { "serviceType" : "routes", &#10;                                "transportType" : "bus" ,&#10;                                "transportCompany" : "TravelOnTip" }&#10;}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\(transportType)\(transportCompany)\routes:retrievetravelontiproutesandschedule-sapiraml-config" doc:id="b5aba650-8770-43db-b7b0-3bd171b08c24" name="get:\(transportType)\(transportCompany)\routes:retrievetravelontiproutesandschedule-sapiraml-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert doc:name="Assert expression" doc:id="c8213b55-ac50-4bde-841d-d601c47303bd" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="retrievetravelontiproutesandschedule-sapiraml-test-suite-get:\(transportType)\(transportCompany)\schedules:retrievetravelontiproutesandschedule-sapiraml-configTest-Schedules" doc:id="cd1010bf-fb54-4ddb-a4ba-83bfd24af21e" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="513bc6b5-af6c-4475-8785-4adb46609d4e" processor="http:request">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="5a736ee8-a9ad-4c20-b207-a0c5f8d69f1f" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value='#[output application/java&#10;---&#10;[&#10;{&#10;"availableSeats": "40",&#10;"departureDateTime": "2021-03-22T12:12:12.090Z",&#10;"travelRoute": {&#10;"destinationLocation": {&#10;"locationCode": "KLG-MY"&#10;},&#10;"originLocation": {&#10;"locationCode": "BEN-SG"&#10;}&#10;}&#10;}&#10;]]' />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="1d319ce3-09f1-4d64-bf9f-c52c4bda078d" >
+				<munit:attributes value='#[{&#10;&#10;       "headers" :  { "transactionId" : "hdsfhjdh-jxbv859-sjdf7643-3746bbd" },&#10;       "uriParams" :  { "serviceType" : "schedules", &#10;                                "transportType" : "bus" ,&#10;                                "transportCompany" : "TravelOnTip" }&#10;}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\(transportType)\(transportCompany)\schedules:retrievetravelontiproutesandschedule-sapiraml-config" doc:id="55057512-f3a9-4a1c-8d2f-e3ceeddbee0a" name="get:\(transportType)\(transportCompany)\schedules:retrievetravelontiproutesandschedule-sapiraml-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert doc:name="Assert expression" doc:id="13ae88a9-802e-4f8f-87e6-f8623170a2f0" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="retrievetravelontiproutesandschedule-sapiraml-test-suite-get:\(transportType)\(transportCompany)\routes:retrievetravelontiproutesandschedule-sapiraml-configTest-Routes2" doc:id="84381e47-7fbd-4911-9271-21d1f61ad392" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="0051920a-e7a3-441d-8c26-17932491efed" processor="http:request">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="c2d52d30-1fcf-4cbf-8c0a-920eb0cd4af7" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value='#[output application/java&#10;---&#10;[&#10;{&#10;"departureLocationCode": "BEN-SG",&#10;"arrivalLocationCode": "KLG-MY"&#10;}&#10;]]' />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="06b94e9a-4731-4530-9a1c-adb0c81bce86" >
+				<munit:attributes value='#[{&#10;&#10;       "headers" :  { "transactionId" : "hdsfhjdh-jxbv859-sjdf7643-3746bbd" },&#10;       "uriParams" :  { "serviceType" : "routes", &#10;                                "transportType" : "bus" ,&#10;                                "transportCompany" : "TravelOnTip" }&#10;}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\(transportType)\(transportCompany)\routes:retrievetravelontiproutesandschedule-sapiraml-config" doc:id="db070d68-71a6-4ec8-8b1c-ea86b9396fb3" name="get:\(transportType)\(transportCompany)\routes:retrievetravelontiproutesandschedule-sapiraml-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert doc:name="Assert expression" doc:id="99a19afb-6e60-4457-b566-be9c39bd6f31" >
+				<munit-tools:that ><![CDATA[#[import * from dw::test::Asserts 
+ ---
+payload must beArray()]]]></munit-tools:that>
+			</munit-tools:assert>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="retrievetravelontiproutesandschedule-sapiraml-test-suite-get:\(transportType)\(transportCompany)\schedules:retrievetravelontiproutesandschedule-sapiraml-configTest-Schedules2" doc:id="ba87dd0d-2f4e-4cfe-8fed-355d93bb95a6" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="a5a1d083-9182-4145-aa4c-c2afcca5c261" processor="http:request">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="5a736ee8-a9ad-4c20-b207-a0c5f8d69f1f" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value='#[output application/java&#10;---&#10;[&#10;{&#10;"availableSeats": "40",&#10;"departureDateTime": "2021-03-22T12:12:12.090Z",&#10;"travelRoute": {&#10;"destinationLocation": {&#10;"locationCode": "KLG-MY"&#10;},&#10;"originLocation": {&#10;"locationCode": "BEN-SG"&#10;}&#10;}&#10;}&#10;]]' />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="80d424f2-374f-465c-9182-e9bedcd88737" >
+				<munit:attributes value='#[{&#10;&#10;       "headers" :  { "transactionId" : "hdsfhjdh-jxbv859-sjdf7643-3746bbd" },&#10;       "uriParams" :  { "serviceType" : "schedules", &#10;                                "transportType" : "bus" ,&#10;                                "transportCompany" : "TravelOnTip" }&#10;}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\(transportType)\(transportCompany)\schedules:retrievetravelontiproutesandschedule-sapiraml-config" doc:id="3b5aac2c-60a4-473f-aeb1-b74e15f1412e" name="get:\(transportType)\(transportCompany)\schedules:retrievetravelontiproutesandschedule-sapiraml-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert doc:name="Assert expression" doc:id="5adc1e84-0950-43de-b564-1ed78833dfa9" >
+				<munit-tools:that ><![CDATA[#[import * from dw::test::Asserts 
+ ---
+payload must beArray()]]]></munit-tools:that>
+			</munit-tools:assert>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
